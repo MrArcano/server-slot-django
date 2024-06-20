@@ -1,19 +1,18 @@
 # from django.shortcuts import render
-import json
 from django.http import JsonResponse
-from slot_machine_api.models import Slot
+from django.utils import timezone
+from slot_machine_api.models import SlotMatrix
+from slot_machine_api.utils import Slot
+import json
 
 def get_reels_slot(request):
     try:
         # Utilizzo della classe e del metodo per ottenere i simboli della slot machine
         symbols_matrix = Slot.generate_slot_symbols()
 
-        # Converti symbols_matrix in formato JSON
-        symbols_json = json.dumps(symbols_matrix)
-
         # Salva symbols_json nel database
-        # slot_data = SlotData(data_json=symbols_json)
-        # slot_data.save()
+        slot_matrix = SlotMatrix(matrix=symbols_matrix, created_at=timezone.now())
+        slot_matrix.save()
 
         response_data = {
             'status': 'success',
