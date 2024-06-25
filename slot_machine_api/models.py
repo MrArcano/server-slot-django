@@ -8,8 +8,8 @@ class SlotMatrix(models.Model):
     created_at = models.DateTimeField(auto_now_add=True) 
 
     class Meta:
-        managed = False  # Indica a Django di non gestire questa tabella
-        db_table = 'slot_matrices'  # Nome della tabella esistente
+        # managed = False  # Indica a Django di non gestire questa tabella
+        db_table = 'slot_matrices'  # Nome della tabella
 
     def __str__(self):
         return f"SlotMatrix {self.slot_id}"
